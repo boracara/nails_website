@@ -1,7 +1,7 @@
 # Blush & Bloom — Press-On Nails E-Commerce
 
 A full storefront for a US-based press-on nails business, built with Next.js (App
-Router), Prisma/SQLite, NextAuth, Stripe, and PayPal.
+Router), Prisma/Postgres, NextAuth, Stripe, and PayPal.
 
 ## Features
 
@@ -23,13 +23,28 @@ Router), Prisma/SQLite, NextAuth, Stripe, and PayPal.
 
 ## Getting Started
 
+Requires a Postgres database (local install, Docker, or a free hosted one like
+[Neon](https://neon.tech) or [Vercel Postgres](https://vercel.com/storage/postgres)).
+
 ```bash
 npm install
-npm run db:setup   # creates the SQLite database and seeds 10 products + reviews
+# set DATABASE_URL in .env to your Postgres connection string first
+npm run db:setup   # pushes the schema and seeds 10 products + reviews
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+## Deploying to Vercel
+
+1. Import this repo at [vercel.com/new](https://vercel.com/new).
+2. In the project's **Storage** tab, add the **Postgres** integration (free tier) —
+   this sets `DATABASE_URL` automatically.
+3. Add `AUTH_SECRET` (any random string) in **Settings → Environment Variables**.
+   Add Stripe/PayPal keys too if you have them (optional — see below).
+4. Deploy. The build runs `prisma db push` and seeds the database automatically
+   (see the `vercel-build` script in `package.json`), so the site is fully
+   populated on first deploy.
 
 ## Environment Variables
 
@@ -37,7 +52,7 @@ Copy `.env.example` to `.env` (already done in this repo for local development) 
 
 | Variable | Purpose |
 | --- | --- |
-| `DATABASE_URL` | SQLite file path (defaults to `file:./dev.db`) |
+| `DATABASE_URL` | Postgres connection string. Locally, point at a Postgres server you run yourself; on Vercel, add the "Postgres" storage integration and it's injected automatically. |
 | `AUTH_SECRET` | Random secret for NextAuth session signing |
 | `STRIPE_SECRET_KEY` / `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | From your [Stripe test dashboard](https://dashboard.stripe.com/test/apikeys). Without these, checkout runs in **demo mode**: orders are recorded as paid immediately so you can test the full flow. |
 | `NEXT_PUBLIC_PAYPAL_CLIENT_ID` | From your [PayPal developer dashboard](https://developer.paypal.com/dashboard/applications). Defaults to PayPal's public sandbox client id (`sb`) so the button works out of the box in testing. |

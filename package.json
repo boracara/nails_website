@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "vercel-build": "prisma generate && prisma db push --accept-data-loss && tsx prisma/seed.ts && next build",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate",
@@ -38,7 +39,6 @@
     "dotenv": "^17.4.2",
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
-    "playwright": "^1.62.0",
     "tailwindcss": "^4",
     "tsx": "^4.23.1",
     "typescript": "^5"
