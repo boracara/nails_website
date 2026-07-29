@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="420" viewBox="0 0 700 420">
+  <defs>
+    <linearGradient id="sg-bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffaf7" />
+      <stop offset="1" stop-color="#fbe6ed" />
+    </linearGradient>
+  </defs>
+  <rect width="700" height="420" fill="url(#sg-bg)" rx="24" />
+  <text x="350" y="45" font-family="Georgia, 'Times New Roman', serif" font-size="24" fill="#4a1a2c" text-anchor="middle">How to measure your nail width</text>
+  <g transform="translate(350,60)">
+    <path d="M -170 260 C -190 150, -150 40, -30 20 L 170 20 C 210 30, 210 90, 190 120 L -140 260 Z" fill="#fdeef3" opacity="0.6" />
+    <rect x="-145" y="70" width="70" height="190" rx="35" fill="#f6cddb" stroke="#b23e64" stroke-width="3" />
+    <line x1="-155" y1="88" x2="-65" y2="88" stroke="#922f50" stroke-width="2" stroke-dasharray="4 4" />
+<rect x="-77" y="30" width="54" height="230" rx="27" fill="#f6cddb" stroke="#b23e64" stroke-width="3" />
+    <line x1="-87" y1="48" x2="-13" y2="48" stroke="#922f50" stroke-width="2" stroke-dasharray="4 4" />
+<rect x="-17" y="10" width="54" height="250" rx="27" fill="#f6cddb" stroke="#b23e64" stroke-width="3" />
+    <line x1="-27" y1="28" x2="47" y2="28" stroke="#922f50" stroke-width="2" stroke-dasharray="4 4" />
+<rect x="44" y="28" width="52" height="232" rx="26" fill="#f6cddb" stroke="#b23e64" stroke-width="3" />
+    <line x1="34" y1="46" x2="106" y2="46" stroke="#922f50" stroke-width="2" stroke-dasharray="4 4" />
+<rect x="104" y="70" width="44" height="190" rx="22" fill="#f6cddb" stroke="#b23e64" stroke-width="3" />
+    <line x1="94" y1="88" x2="158" y2="88" stroke="#922f50" stroke-width="2" stroke-dasharray="4 4" />
+    <text x="-110" y="290" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#4a1a2c" text-anchor="middle" font-weight="600">Thumb</text>
+<text x="-50" y="290" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#4a1a2c" text-anchor="middle" font-weight="600">Index</text>
+<text x="10" y="290" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#4a1a2c" text-anchor="middle" font-weight="600">Middle</text>
+<text x="70" y="290" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#4a1a2c" text-anchor="middle" font-weight="600">Ring</text>
+<text x="126" y="290" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#4a1a2c" text-anchor="middle" font-weight="600">Pinky</text>
+  </g>
+  <text x="350" y="400" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#8a5a6c" text-anchor="middle">Measure the widest part of each nail bed in millimeters, then match to the chart below.</text>
+</svg>

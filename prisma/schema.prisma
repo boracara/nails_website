@@ -1,0 +1,133 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  passwordHash  String
+  createdAt     DateTime  @default(now())
+
+  orders        Order[]
+  reviews       Review[]
+  wishlist      WishlistItem[]
+  addresses     Address[]
+}
+
+model Address {
+  id        String  @id @default(cuid())
+  userId    String
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName  String
+  line1     String
+  line2     String?
+  city      String
+  state     String
+  zip       String
+  country   String  @default("US")
+  phone     String?
+  isDefault Boolean @default(false)
+}
+
+model Product {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  name           String
+  description    String
+  price          Float
+  compareAtPrice Float?
+  image          String
+  images         String   // JSON array of image paths
+  collection     String   // Summer Collection | Solid Color | Designs | Wedding | Kids Nails
+  style          String   // French, Chrome, Glitter, Marble, Ombre, Floral, Solid...
+  season         String   // Spring | Summer | Fall | Winter | All Season
+  shapes         String   // JSON array of supported nail shapes
+  coverage       String   @default("Full Cover") // Full Cover | Kids
+  featured       Boolean  @default(false)
+  stock          Int      @default(100)
+  createdAt      DateTime @default(now())
+
+  reviews        Review[]
+  wishlist       WishlistItem[]
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  name      String
+  rating    Int
+  title     String
+  body      String
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  userId          String?
+  user            User?    @relation(fields: [userId], references: [id])
+  email           String
+  items           String   // JSON array of {productId, name, price, qty, size, shape, image}
+  subtotal        Float
+  discount        Float    @default(0)
+  shipping        Float    @default(0)
+  total           Float
+  promoCode       String?
+  status          String   @default("pending") // pending | paid | fulfilled | cancelled
+  paymentMethod   String   @default("stripe") // stripe | paypal
+  stripeSessionId String?
+  giftCardId      String?
+  shippingName    String?
+  shippingAddress String?
+  createdAt       DateTime @default(now())
+}
+
+model NewsletterSubscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
+
+model CustomDesignRequest {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  shape       String?
+  size        String?
+  description String
+  status      String   @default("new") // new | reviewed | quoted | completed
+  createdAt   DateTime @default(now())
+}
+
+model GiftCard {
+  id             String   @id @default(cuid())
+  code           String   @unique
+  amount         Float
+  balance        Float
+  recipientName  String?
+  recipientEmail String?
+  senderName     String?
+  message        String?
+  purchasedEmail String
+  createdAt      DateTime @default(now())
+}
